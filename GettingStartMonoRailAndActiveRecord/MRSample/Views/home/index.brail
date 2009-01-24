@@ -1,0 +1,12 @@
+﻿<html>
+	<head>
+		<title>${title}</title>
+	</head>
+	<body>
+		<p>The following items are in the list:</p>
+		<ul>
+			<% for element in list: output "<li>${element}</li>" %>
+		</ul>
+		<p>I hope that you would like Brail</p>
+	</body>
+</html>

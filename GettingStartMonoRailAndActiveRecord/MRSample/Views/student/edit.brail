@@ -1,0 +1,7 @@
+﻿<h1>Modify Student</h1>
+<form method='post' action='/student/update.rails'>
+	${Form.HiddenField("student.Id")}
+	Name: ${Form.TextField("student.Name")}<br />
+	Grade: ${Form.TextField("student.Grade")}<br />
+	<input type='submit' value='Update' />
+</form>
