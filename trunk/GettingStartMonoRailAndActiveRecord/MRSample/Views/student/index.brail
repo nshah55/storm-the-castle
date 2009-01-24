@@ -1,0 +1,30 @@
+﻿<h1>Sample Student CRUD</h1>
+<div>
+	<p style="color: red;">${?msg}</p>
+</div>
+<table border='1'>
+	<tr>
+		<th>Id</th>
+		<th>Name</th>
+		<th>Grade</th>
+		<th>Commands</th>
+	</tr>
+<% for curStudent in students: %>
+	<tr>
+		<td>${curStudent.Id}</td>
+		<td>${curStudent.Name}</td>
+		<td>${curStudent.Grade}</td>
+		<td>
+			<a href="/student/edit.rails?id=${curStudent.Id}">Edit</a> | <a href="/student/remove.rails?id=${curStudent.Id}">Remove</a>
+		</td>
+	</tr>
+<% end %>	
+<% if students.Length == 0: %>
+<tr>
+	<td colspan="4">No student records found.</td>
+</tr>
+<% end %>
+</table>
+<p>
+<a href="/student/add.rails">Add New Student</a> | <a href="/">Home</a>
+</p>

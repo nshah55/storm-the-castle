@@ -1,0 +1,156 @@
+﻿<h1>MonoRail Introduction</h1>
+<p>MonoRail can be viewed as another implementation of <a href="http://msdn.microsoft.com/en-us/library/system.web.ihttphandler.aspx" target="_blank">IHttpHandler</a>. 
+It basically extracts information from the Url and searches for a controller in a binary tree. If found, the controller is created and from that point on, the controller handles the request.</p>
+
+<p><img src="/static/i/mr_flow.png" /> &nbsp;</p>
+<p>The <b>controller</b> is able to <b>select the action</b> (<i>method</i>) to invoke, process the arguments (in the case of <b>SmartDispatcherController</b>) and delegate the execution to the action.</p>
+
+<p>
+When the action returns, the controller checks if a view was selected (and no redirect was issued). 
+If so the ViewEngine is invoked to process the selected view, which renders the content directly to the client's browser.
+</p>
+<p>As MonoRail runs on top of Asp.Net infrastructure (not to be confused with WebForms) it takes 
+advantage of all features like Session management, Application/Request level events and security. </p>
+
+<h2>First Controller</h2>
+
+<p>Controllers are extremelly important as they are the intelligent piece 
+of the application that orchestrates the application flow.</p>
+<p>
+	<img src="/static/i/mr-1.jpg" />
+</p>
+<p>In MonoRail a controllers are just a plan old C# class which derived from <strong>Controller</strong> or <strong>SmartDispatcherController</strong> base class. For example:</p>
+<pre name="code" class="csharp">
+	using Castle.MonoRail.Framework;
+
+	public class CustomerController : SmartDispatcherController
+	{
+		public void Index()
+		{
+		}
+	}
+	
+</pre>
+<p>We had just created a controller call "Customer" with a single action call "Index". By default, the class name is used as the controller identification. If your controller's class name ends with Controller, the controller identifier is the class name, but stipped of Controller.
+You can also use the ControllerDetails attribute to associate a different name to your controller class.</p>
+
+<p>
+It is advisable that controller classes follow the <strong>Name + Controller</strong> suffix convention. When the controller is registered, MonoRail strips the "Controller" suffix and uses the name as the key. The controller name is used on the URL to access it. 
+</p>
+<p>The controller code show above is accessible using the URL bellow:</p>
+<div class="resultBox">
+/customer/index.rails
+</div>
+
+<h2>Area</h2>
+<p>MonoRail supports the concept of areas, which are logical groups of controllers. All controllers belong to an area. The default area is an empty (unnamed) one.</p>
+
+<p>Imagine a tree of controllers. Each branch in the tree is an area, each leaf is a controller.</p>
+
+<p>To define an area, use the ControllerDetailsAttribute attribute: </p>
+<pre name="code" class="csharp">
+using Castle.MonoRail.Framework;
+
+[ControllerDetails(Area="admin")]
+public class UsersController : SmartDispatcherController
+&#123;
+    public void Index()
+    &#123;
+    &#125;
+&#125;
+</pre>
+<p>
+This controller is now is accessible using the following url path:
+</p>
+<div class='resultBox'>
+/admin/users/index.rails
+</div>
+
+<p>You can also define more than one level: </p>
+<pre name="code" class="csharp">
+using Castle.MonoRail.Framework;
+
+[ControllerDetails(Area="admin/users")]
+public class PasswordMngController : SmartDispatcherController
+&#123;
+    public void Index()
+    &#123;
+    &#123;
+&#123;
+</pre>
+<p>This controller now is accessible using the following url path:</p>
+<div class='resultBox'>
+/admin/users/passwordmng/index.rails
+</div>
+
+<h2>Actions</h2>
+<p>
+In MonoRail an action are public method with controller class. Any code instruction written winthin public method (action) will be execute first before controller pass responsibility to view.
+</p>
+
+<p>However an action can pass along some data for view engine to use during view template processing.</p>
+
+<ul>
+	<li><strong>PropertyBag</strong>: Is the standard way for passing data from action to view.</li>
+	<li><strong>Flash</strong>: Gets a dictionary of volative items. Ideal for showing success and failures messages.</li>
+</ul>
+
+<h3>Passing Primary Data Type</h3>
+<pre name="code" class="csharp">
+using Castle.MonoRail.Framework;
+
+public class HomeController : SmartDispatcherController
+&#123;
+    public void Index()
+    &#123;
+		// Putting string literal into a property bag
+		PropertyBag["name"] = "Chorn Sokun";
+		
+		// Putting array of name into property bag
+		PropertyBag["names"] = new string[]{ "Sokun", "Seiha", "Reasey", "Sak" };
+		
+    &#125;
+&#125;
+</pre>
+
+<h3>Passing Object, Collection</h3>
+<p>Assume that we have a Student class define bellow:</p>
+
+<pre name="code" class="csharp">
+public class Student
+&#123;
+	public int Id { get; set; }
+	public string Name { get; set; }
+	public string Grade { get; set; }
+&#125;
+
+</pre>
+
+<p>Passing object, collection of object from action to view as simple as passing primary data type.</p>
+<pre name="code" class="csharp">
+using Castle.MonoRail.Framework;
+
+public class HomeController : SmartDispatcherController
+&#123;
+    public void Index()
+    &#123;
+		// Passing user define object
+		Student student = new Student();
+		student.Id = 1;
+		student.Name = "Sokun";
+		student.Grade = "A";
+		
+		PropertyBag["student"] = student;
+
+		// passing collection of object
+		List&lt;Student&gt; students = new List&lt;Student&gt;();
+		students.Add(new Student &#123; Id = 1, Name = "Seiha", Grade = "A" &#125; );
+		students.Add(new Student &#123; Id = 2, Name = "Sokun", Grade = "B" &#125; );
+		students.Add(new Student &#123; Id = 3, Name = "Reasey", Grade = "A" &#125; );
+		students.Add(new Student &#123; Id = 4, Name = "Sak", Grade = "A" &#125; );
+		
+		PropertyBag["students"] = students;
+    &#125;
+&#125;
+
+</pre>

@@ -1,0 +1,7 @@
+﻿<h1>Remove Student</h1>
+<p>You are trying to remove the follwoing student record:<br />
+<strong>Id:</strong> ${student.Id}<br />
+<strong>Name:</strong> ${student.Name}<br />
+<strong>Grade:</strong> ${student.Grade}<br />
+Are you sure? <a href="/student/remove.rails?id=${student.Id}&confirm=true">Yes</a> | <a href="/student/index.rails">No</a>
+</p>
