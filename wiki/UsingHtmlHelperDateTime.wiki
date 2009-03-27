@@ -1,5 +1,5 @@
 #labels Featured
-#Quick introduction to Html.DateTime()
+Quick introduction to {{{Html.DateTime()}}}
 
 = Introduction =
 
