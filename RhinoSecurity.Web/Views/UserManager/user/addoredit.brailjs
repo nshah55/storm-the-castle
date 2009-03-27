@@ -1,0 +1,2 @@
+﻿page.ReplaceHtml("#frm_user", {@partial: 'security/user/_form'})
+page.Show("#frm_user")

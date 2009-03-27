@@ -1,0 +1,5 @@
+﻿<ul>
+<% for group in groups: %>
+	<li>${group.Name} [ ${?group.Users.Count} ]</li>
+<% end %>	
+</ul>

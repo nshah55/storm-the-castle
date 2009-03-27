@@ -1,0 +1,1 @@
+﻿page.ReplaceHtml("#frm_group", {@partial: 'security/group/_form'})

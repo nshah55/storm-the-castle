@@ -1,0 +1,7 @@
+﻿<h1>ActiveRecord :: Database Configuration</h1>
+What do you want to do next?<br />
+<ul>
+	<li><a href="${Url.For({@action:'install', @querystring: 'confirm=true'})}">Create database schema</a></li>
+	<li><a href="${Url.For({@action:'uninstall', @querystring: 'confirm=true'})}">Drop database schema</a></li>
+</ul>
+Go to <a href="${Url.For({@controller: 'home', @action: 'index'})}">home</a> page.
