@@ -1,0 +1,24 @@
+﻿<% component CaptureFor, {@id: 'scripts'}: %>
+<link rel="stylesheet" href="/static/css/floral.tabs.css" type="text/css" media="screen" title="Flora (Default)">
+<script type="text/javascript" src="/static/js/ui.core.js"></script>
+<script type="text/javascript" src="/static/js/ui.tabs.js"></script>
+<% end %>
+<h1>Permissions</h1>
+<p>Allow or deny an operation for user / users group for an entity / entities group.</p>
+<div id="permissions" class="flora">
+  <ul>
+      <li><a href="#fragment-1"><span>Groups</span></a></li>
+      <li><a href="#fragment-2"><span>Operation</span></a></li>
+  </ul>
+  <div id="fragment-1">
+		<% OutputSubView("_groupAssignment") %>
+  </div>
+  <div id="fragment-2">
+    <% OutputSubView("_operationAssignment") %>    
+  </div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+	$("#permissions > ul").tabs();
+	});
+</script>

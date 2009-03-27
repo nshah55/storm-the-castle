@@ -1,0 +1,9 @@
+﻿<h1>Security Control Center</h1>
+<p>Welcomem to security control center.</p>
+
+<ul>
+	<li><a href="${Url.For({@area: 'security', @controller: 'user', @action: 'home'})}">Users Management</a></li>
+	<li><a href="${Url.For({@area: 'security', @controller: 'group', @action: 'home'})}">Groups Management</a></li>
+	<li><a href="${Url.For({@area: 'security', @controller: 'operation', @action: 'home'})}">Operations</a> - a named operation in the system, using the "/Account/Financial/View" pattern.</li>
+	<li><a href="${Url.For({@area: 'security', @controller: 'permission', @action: 'home'})}">Permission</a> - allow or deny an operation for user / users group for an entity / entities group.</li>
+</ul>
