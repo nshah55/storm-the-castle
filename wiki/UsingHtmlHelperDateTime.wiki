@@ -15,6 +15,6 @@ The quick & dirty solution is to hard code day, month, year there we save some t
 
 *note* _if you properly configure your server & client setting a single text box for date entry should be sufficient._
 
-= Html.DateTime() =
+= {{{Html.DateTime()}}} =
 
-Now by using Html.DateTime() helper method at run time it will generate 3 select boxes which allow you to input date value from pre-design list.
+Now by using {{{Html.DateTime()}}} helper method at run time it will generate 3 select boxes which allow you to input date value from pre-design list.
