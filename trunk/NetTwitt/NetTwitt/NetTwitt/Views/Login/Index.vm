@@ -20,8 +20,8 @@
 	<hr noshade="true" size="1" />
 	
 	<input type="submit" value="Log in" />
-	
-	
+		#set($registerUrl = $UrlHelper.For("%{controller='User' action='Register'}") )
+	<p>Or <a href="$registerUrl">Register</a></p>
 </fieldset>
 
 </form>
