@@ -17,7 +17,7 @@
 			<a href="$!urlUser">$User.Name</a> <br />
 			
 			#set($followUrl = $UrlHelper.For("%{controller='User' action='Follow'}") )
-		##	#set($followUrl = $UrlHelper.For("%{controller='Home' action='FollowUser'}") )
+	
 			<form action="$!followUrl" method="post">
 			<input type="submit" value="Follow"/>
 			<input type="hidden" value="$user.id" name="user.id"/>			
