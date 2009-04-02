@@ -1,0 +1,24 @@
+﻿<fieldset id="message" class="panel">
+	<h3>What are you doing?</h3>
+	
+	<form action="$siteroot/Home/Post.rails" method="post">
+		<textarea id="tweet" cols="20" rows="2" name="tweet"></textarea>
+		<input class="button" type="submit" value="Update" />
+	</form>
+</fieldset>
+		
+<fieldset id="tweets" class="panel">
+#foreach( $twitt in $twittsFromFollowedUsers)
+	<div class="twitt">
+	<img src="$siteroot/content/images/user.jpeg" alt="$twitt.User.Name" />
+	<p>
+		#set ($twittsUrl= $UrlHelper.For("%{controller='User',action='Twitts',querystring='id=$twitt.user.id'}"))
+		
+		<a href="$twittsUrl">$twitt.User.Name</a> 
+		<span class="message-content">$!twitt.Message</span>
+	</p>
+	<span class="datetime">$twitt.Posted</span>
+	<br />
+	</div>	
+#end
+</fieldset>

@@ -1,0 +1,10 @@
+﻿<fieldset class="users panel">
+				<h5>Following</h5>
+				<ul>
+				#foreach( $followedUser in $User.Follows)
+					<li>$followedUser.Name</li>
+				#end
+				</ul>
+			</fieldset>
+
+Hi <b>$!User.Name</b> <a href="$Siteroot/Login/Logout.rails">Log out</a>
