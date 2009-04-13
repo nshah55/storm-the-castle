@@ -14,16 +14,17 @@ namespace NetTwitt.Controllers
 	[Layout("Default"), Rescue("Default")]
 	public class UserController : SmartDispatcherController
 	{
+
 		public void Search()
 		{}
 
-		[SkipFilter]
-		[AccessibleThrough(Verb.Post)]
+//		[AccessibleThrough(Verb.Post)]
 		public void Search(string username)
 		{
 			PropertyBag["users"] = ActiveRecordBase<User>.FindAll(
-										Restrictions.Like("Username", username)
-										.IgnoreCase());
+										Restrictions.Or(
+											Restrictions.Like("Username", username).IgnoreCase(),
+											Restrictions.Like("Name", username).IgnoreCase()));
 		}
 
 		[AccessibleThrough(Verb.Post)]

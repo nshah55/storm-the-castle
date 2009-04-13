@@ -15,7 +15,7 @@ namespace NetTwitt.Components
 			if ((loggedUser.Identity.AuthenticationType == "Monorail Type") && (loggedUser.Identity.IsAuthenticated))
 			{
 				LoggedInUser user = (LoggedInUser)Session["User"];
-				PropertyBag["User"] = ActiveRecordBase<User>.FindOne(Restrictions.Eq("Id", user.UserId));
+				PropertyBag["loggedUser"] = ActiveRecordBase<User>.FindOne(Restrictions.Eq("Id", user.UserId));
 				RenderView("Followers");
 			}
 			

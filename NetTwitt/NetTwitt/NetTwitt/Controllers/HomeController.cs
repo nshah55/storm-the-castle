@@ -12,6 +12,7 @@ namespace NetTwitt.Controllers
 	[Layout("Default"), Rescue("Default")]
 	public class HomeController: SmartDispatcherController
 	{
+
 		private readonly ITwitterService twitterService;
 
 		public HomeController(ITwitterService twitterService)
@@ -21,8 +22,8 @@ namespace NetTwitt.Controllers
 
 		public void Index()
 		{
-			User currentUser = GetLoggedInUser(); 
-
+			User currentUser = GetLoggedInUser();
+			#region Option1
 //			OPTION 1 - Without Integration, no service
 //			DetachedCriteria usersCriteria = DetachedCriteria.For<User>();
 //
@@ -37,7 +38,7 @@ namespace NetTwitt.Controllers
 //
 //			PropertyBag["twittsFromFollowedUsers"] = ActiveRecordBase<Twitt>.FindAll(twittsCriteria,
 //				new Order("Posted", false));
-
+#endregion
 
 			if (null != currentUser)
 			{
@@ -63,6 +64,7 @@ namespace NetTwitt.Controllers
 		public void Post(string tweet)
 		{
 			twitterService.PostUpdate(GetLoggedInUser(), tweet);
+			Flash["lastStatus"] = tweet;
 			RedirectToAction("Index");
 		}
 

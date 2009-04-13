@@ -13,7 +13,7 @@
 		<div class="twitt">
 		<img src="$siteroot/content/images/user.jpeg" alt="$User.Name" />
 		<p>
-			#set($urlUser = $UrlHelper.For("%{controller='home' action='Index'}") )
+			#set($urlUser = $UrlHelper.For("%{controller='User' action='Twitts', querystring='id=$user.id'}") )
 			<a href="$!urlUser">$User.Name</a> <br />
 			
 			#set($followUrl = $UrlHelper.For("%{controller='User' action='Follow'}") )
