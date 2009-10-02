@@ -97,7 +97,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\DateTimeController.cs" />
     <Compile Include="Controllers\HowToController.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -111,8 +110,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Views\DateTime\send.brail" />
-    <None Include="Views\DateTime\index.brail" />
     <None Include="Views\howto\index.brail" />
     <None Include="Views\howto\integrate.brail" />
     <None Include="Views\howto\usingactiverecord.brail" />

@@ -1,5 +1,0 @@
-﻿<form method="post" action="${Url.For({@area:'', @controller:'datetime', @action:'send'})}">
-<p>English Date: ${Html.DateTime("dt1", System.DateTime.Now)}<br /></p>
-<p>Semi-Localize: ${Html.DateTime("dt2", System.DateTime.Now, {@monthFriendly: monthNamesInKhmer})}</p>
-<input type="submit" value="Submit" />
-</form>

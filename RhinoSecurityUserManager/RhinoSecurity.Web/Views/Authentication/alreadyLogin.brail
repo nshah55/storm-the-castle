@@ -1,1 +1,0 @@
-﻿You are currently login as ${context.CurrentUser.Name}; if you are not the person client here to <a href="${Url.For({@controller: 'authentication', @action: 'logout'})}">sign-out</a>.

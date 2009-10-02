@@ -1,3 +1,0 @@
- def InternalError(exc):
-	return exc.GetType().Name;
- end

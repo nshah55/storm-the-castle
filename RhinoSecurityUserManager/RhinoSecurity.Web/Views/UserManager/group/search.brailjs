@@ -1,1 +1,0 @@
-﻿page.ReplaceHtml("#dl_group", {@partial: 'security/group/_list'})

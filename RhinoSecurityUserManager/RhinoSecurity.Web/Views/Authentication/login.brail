@@ -1,7 +1,0 @@
-﻿${?error}
-<form method="post" action="${Url.For({@controller: 'authentication', @action: 'authenticate'})}">
-<input type="hidden" name="returnUrl" value="${?returnUrl}" />
-Name: <br /> <input type="text" name="username" /><br />
-Password: <br /><input type="password" name="password" /><br />
-<input type="submit" value="Login" />
-</form>
