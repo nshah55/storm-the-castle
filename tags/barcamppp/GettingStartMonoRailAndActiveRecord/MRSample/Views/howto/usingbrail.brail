@@ -1,0 +1,177 @@
+﻿<h1>How to write template in Brail?</h1>
+<p>
+From Visual Studio .NET create a <strong>new text file</strong> giving it a name with <strong>.brail</strong> as file extension.<br />
+Now take a look at a sample brail template file located <strong>View/Home/index.brail</strong>
+<br /><br />
+<img src="/static/i/add-view-template.jpg" />
+</p>
+<p>
+A complete example of brail template:
+</p>
+<pre name="code" class="csharp">
+&lt;html&gt;    
+&lt;head&gt;        
+&lt;title&gt;$&#123;title&#125;&lt;/title&gt;
+&lt;/head&gt;    
+&lt;body&gt;        
+     &lt;p&gt;The following items are in the list:&lt;/p&gt;  
+     &lt;ul&gt;&lt;%for element in list:    output "&lt;li&gt;$&#123;element&#125;&lt;/li&gt;"%&gt;&lt;/ul&gt;
+     &lt;p&gt;I hope that you would like Brail&lt;/p&gt;    
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>The output of this program (assuming list is (1,2,3) and title is "Demo" ) would be:</p>
+<div class='resultBox'>
+<pre>
+&lt;html&gt;   
+&lt;head&gt;        
+&lt;title&gt;Demo&lt;/title&gt;   
+&lt;/head&gt;    
+&lt;body&gt;        
+     &lt;p&gt;The following items are in the list:&lt;/p&gt; 
+     &lt;ul&gt;&lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;&lt;li&gt;3&lt;/li&gt;&lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+<h2>Variables</h2>
+<p>
+Like any other view engine the main role is to processing the view template by replacing macro string with value evluated at runtime. Variables can be define using the following convention:
+</p>
+<p>
+	<ul>
+		<li>$&#123;name&#125; - echo the value of variable name; exception throw if name is not defined.</li>
+		<li>$&#123;?name&#125; - echo the value of variable name; echo empty if name is not defined.</li>
+	</ul>
+</p>
+
+<h2>Control Flow</h2>
+<pre name="code" class="csharp">
+&lt;%
+	myAge = 10
+	if myAge == 10:
+		output "You are 10 years old."
+	else:
+		output "You are " + myAge + " years old."
+	end
+%&gt;	
+</pre>
+<p>Html output would be:</p>
+<div class='resultBox'>	
+<%
+myAge = 10
+if myAge == 10:
+	output "You are 10 years old."
+else:
+	output "You are " + myAge + " years old."
+end
+%>
+</div>
+
+<h2>Loop</h2>
+<pre name="code" class="csharp">
+&lt;ul&gt;
+&lt;%
+// declare and assign variable in the view
+itemCollections = [ 1, 2, 3, 4 ]
+
+for item in itemCollections:
+%&gt;
+	<li>$&#123;item&#125;</li>
+&lt;%
+end
+%&gt;
+&lt;/ul&gt;
+</pre>
+<p>Output would be:</p>
+<div class='resultBox'>	
+<pre>
+&lt;ul&gt;
+<%
+itemCollections = [ 1, 2, 3, 4 ]
+for item in itemCollections: %>  &lt;li&gt;${item}&lt;/li&gt;<br /><% end %>&lt;/ul&gt;
+</pre>
+</div>
+
+<h2>Catch Object, Collection from Action</h2>
+<p>Once an object or colelction placed into PropertyBag, Flash, Cookie or Session you can access to those object or collection from the view by it <strong>Key</strong>.
+</p>
+<pre name="code" class="csharp">
+Student: Id = $&#123;student.Id&#125;, Name = $&#123;student.Name&#125;, Grade = $&#123;student.Grade&#125; 
+</pre>
+
+<p>Output would be:</p>
+<div class='resultBox'>
+Student: Id = 1, Name = Sokun, Grade = B
+</div>
+<p>Render a collection as HTML table:</p>
+<pre name="code" class="csharp">
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Id&lt;/th&gt;
+		&lt;th&gt;Name&lt;/th&gt;
+		&lt;th&gt;Grade&lt;/th&gt;
+	&lt;/tr&gt;
+&lt;% for curStudent in students: %&gt;	
+	&lt;tr&gt;
+		&lt;td&gt;$&#123;curRtudent.Id&#125;&lt;/td&gt;
+		&lt;td&gt;$&#123;curRtudent.Name&#125;&lt;/td&gt;
+		&lt;td&gt;$&#123;curRtudent.Grade&#125;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;% end %&gt;
+&lt;/table&gt;
+</pre>
+<p>Output would be:</p>
+<div class='resultBox'>
+<pre>
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Id&lt;/th&gt;
+		&lt;th&gt;Name&lt;/th&gt;
+		&lt;th&gt;Grade&lt;/th&gt;
+	&lt;/tr&gt;
+
+	&lt;tr&gt;
+		&lt;td&gt;1&lt;/td&gt;
+		&lt;td&gt;Seiha&lt;/td&gt;
+		&lt;td&gt;A&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;2&lt;/td&gt;
+		&lt;td&gt;Sokun&lt;/td&gt;
+		&lt;td&gt;B&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;3&lt;/td&gt;
+		&lt;td&gt;Reseay&lt;/td&gt;
+		&lt;td&gt;A&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;4&lt;/td&gt;
+		&lt;td&gt;Sak&lt;/td&gt;
+		&lt;td&gt;A&lt;/td&gt;
+	&lt;/tr&gt;
+</pre>
+&lt;/table&gt;
+</div>
+<h2>Helper Classes</h2>
+<p>There are many helpers classes available in MonoRail such as HtmlHelper (Castle.MonoRail.Framework.Helpers.HtmlHelper) , <a href="http://castleproject.org/monorail/documentation/trunk/helpers/form/index.html" target="_helper">FormHelper</a> (Castle.MonoRail.Framework.Helpers.FormHelper). In the context of Brail View engine though helper are a set of macro that can be call.</p>
+<pre name="code" class="csharp">
+&lt;form method='post' action='/student/create.rails'&gt;
+   $&#123;Form.HiddenField("st.Id")&#125;
+   Name: $&#123;Form.TextField("st.Name")&#125;&lt;br /&gt;
+   Grade: $&#123;FormHelper.TextField("st.Grade")&#125;&lt;br /&gt;
+   &lt;input type='submit' value='Save'/&gt;
+&lt;/form&gt;
+</pre>
+<p>Html output as:</p>
+<div class='resultBox'>
+<pre>
+&lt;form method='post' action='/student/create.rails'&gt;
+   &lt;input type='hidden' id='st_Id' name='st.Id' value='0' /&gt;
+   Name: &lt;input type='text' id='st_Name' name='st.Name' value='' /&gt;&lt;br /&gt;
+   Grade: &lt;input type='text' id='st_Grade' name='st.Grade' value='' /&gt;&lt;br /&gt;
+   &lt;input type='submit' value='Save'/&gt;
+&lt;/form&gt;
+</pre>
+</div>

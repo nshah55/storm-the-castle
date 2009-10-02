@@ -1,0 +1,7 @@
+﻿<h1>Add New Student</h1>
+<form method='post' action='/student/create.rails'>
+	<input type='hidden' name='student.Id' value='0' />
+	Name: <input type='text' name='student.Name' value='' /><br />
+	Grade: <input type='text' name='student.Grade' value='' /><br />
+	<input type='submit' value='Save' />
+</form>
