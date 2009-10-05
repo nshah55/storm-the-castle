@@ -14,7 +14,6 @@ namespace MRSample
 			IConfigurationSource config = ActiveRecordSectionHandler.Instance;
 
 			Assembly assm = Assembly.Load("MRSample");
-
 			ActiveRecordStarter.Initialize(assm, config);
 		}
 	}

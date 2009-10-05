@@ -58,6 +58,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\SharedLibs\NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="NHibernate.ByteCode.Castle, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SharedLibs\NHibernate.ByteCode.Castle.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SQLite, Version=1.0.35.1, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
@@ -80,27 +84,25 @@
     <Content Include="static\i\basic-structure.jpg" />
     <Content Include="static\i\mr-1.jpg" />
     <Content Include="static\i\mr_flow.png" />
-    <Content Include="static\js\clipboard.swf" />
-    <Content Include="static\js\shBrushCpp.js" />
-    <Content Include="static\js\shBrushCSharp.js" />
-    <Content Include="static\js\shBrushCss.js" />
-    <Content Include="static\js\shBrushDelphi.js" />
-    <Content Include="static\js\shBrushJava.js" />
-    <Content Include="static\js\shBrushJScript.js" />
-    <Content Include="static\js\shBrushPhp.js" />
-    <Content Include="static\js\shBrushPython.js" />
-    <Content Include="static\js\shBrushRuby.js" />
-    <Content Include="static\js\shBrushSql.js" />
-    <Content Include="static\js\shBrushVb.js" />
-    <Content Include="static\js\shBrushXml.js" />
-    <Content Include="static\js\shCore.js" />
+    <Content Include="static\js\syntax\clipboard.swf" />
+    <Content Include="static\js\syntax\shBrushCpp.js" />
+    <Content Include="static\js\syntax\shBrushCSharp.js" />
+    <Content Include="static\js\syntax\shBrushCss.js" />
+    <Content Include="static\js\syntax\shBrushDelphi.js" />
+    <Content Include="static\js\syntax\shBrushJava.js" />
+    <Content Include="static\js\syntax\shBrushJScript.js" />
+    <Content Include="static\js\syntax\shBrushPhp.js" />
+    <Content Include="static\js\syntax\shBrushPython.js" />
+    <Content Include="static\js\syntax\shBrushRuby.js" />
+    <Content Include="static\js\syntax\shBrushSql.js" />
+    <Content Include="static\js\syntax\shBrushVb.js" />
+    <Content Include="static\js\syntax\shBrushXml.js" />
+    <Content Include="static\js\syntax\shCore.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\HowToController.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HowToController.cs" />
     <Compile Include="Controllers\SetupController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
@@ -110,17 +112,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Views\home\index.brail" />
     <None Include="Views\howto\index.brail" />
     <None Include="Views\howto\integrate.brail" />
     <None Include="Views\howto\usingactiverecord.brail" />
     <None Include="Views\howto\usingbrail.brail" />
-    <None Include="Views\home\index.brail" />
     <None Include="Views\howto\usingcontroller.brail" />
     <None Include="Views\layouts\default.brail" />
     <None Include="Views\layouts\syntaxHightlight.brail" />
     <None Include="Views\rescues\generalerror.brail" />
-    <None Include="Views\setup\uninstall.brail" />
     <None Include="Views\setup\install.brail" />
+    <None Include="Views\setup\uninstall.brail" />
     <None Include="Views\student\add.brail" />
     <None Include="Views\student\edit.brail" />
     <None Include="Views\student\index.brail" />
